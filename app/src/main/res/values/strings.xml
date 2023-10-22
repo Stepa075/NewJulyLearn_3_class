@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NewJulyLearn 3 class</string>
+    <string name="tv1">tv1</string>
+    <string name="res_for_top_label">Математика 3 класс</string>
+    <string name="tv1_label">Примеры с одним неизвестным</string>
+    <string name="otvet">Ответ</string>
 </resources>
