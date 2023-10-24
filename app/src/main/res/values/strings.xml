@@ -3,5 +3,8 @@
     <string name="tv1">tv1</string>
     <string name="res_for_top_label">Математика 3 класс</string>
     <string name="tv1_label">Примеры с одним неизвестным</string>
+    <string name="card1_label">Примеры сложение и вычитание</string>
+    <string name="card2_label">Примеры умножение и деление</string>
+    <string name="card3_label">Примеры больше - меньше</string>
     <string name="otvet">Ответ</string>
 </resources>
