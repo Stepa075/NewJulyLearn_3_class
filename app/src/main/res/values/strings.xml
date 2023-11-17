@@ -7,4 +7,6 @@
     <string name="card2_label">Примеры умножение и деление</string>
     <string name="card3_label">Примеры больше - меньше</string>
     <string name="otvet">Ответ</string>
+    <string name="pravilno">Правильно: </string>
+    <string name="nepravilno">Неправильно: </string>
 </resources>
