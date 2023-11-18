@@ -72,21 +72,23 @@ class MainActivity : AppCompatActivity() {
 
             tvTrueAnswer = it.card1RightAnswers
             tvFalseAnswer = it.card1NotRightAnswers
+            tvTrueAnswer2 = it.card2RightAnswers
+            tvFalseAnswer2 = it.card2NotRightAnswers
+            tvTrueAnswer3 = it.card3RightAnswers
+            tvFalseAnswer3 = it.card3NotRightAnswers
+            tvTrueAnswer4 = it.card4RightAnswers
+            tvFalseAnswer4 = it.card4NotRightAnswers
 //            binding.tvCard2Right.text = it.card2RightAnswers.toString()
 //            binding.tvCard2NotRight.text = it.card2NotRightAnswers.toString()
 //            binding.tvCard3Right.text = it.card3RightAnswers.toString()
 //            binding.tvCard3NotRight.text = it.card3NotRightAnswers.toString()
 //            binding.tvCard4Right.text = it.card4RightAnswers.toString()
 //            binding.tvCard4NotRight.text = it.card4NotRightAnswers.toString()
-            val zzz:String = it.card1RightAnswers.toString()
-            binding.tvCard1RightTv.text = "${getString(R.string.pravilno)} $zzz"
-            val sss: String =  it.card1NotRightAnswers.toString()
-            binding.tvCard1NotRight.text = "${getString(R.string.nepravilno)} $sss"
+            val true1:String = it.card1RightAnswers.toString()
+            binding.tvCard1RightTv.text = "${getString(R.string.pravilno)} $true1"
+            val false1: String =  it.card1NotRightAnswers.toString()
+            binding.tvCard1NotRight.text = "${getString(R.string.nepravilno)} $false1"
         })
-//        val sstr1 = StringBuilder(R.string.pravilno).append(tvTrueAnswer).toString()
-//        binding.tvCard1RightTv.text = sstr1
-//        val sstr2 = StringBuilder(R.string.nepravilno).append(tvFalseAnswer).toString()
-//        binding.tvCard1NotRight.text = sstr2
     }
 
 
@@ -118,15 +120,15 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
         val id1 = tvTrueAnswer
         val id2 = tvFalseAnswer
-//        val id3 = binding.tvCard2Right.text.toString().toInt()
-//        val id4 = binding.tvCard2NotRight.text.toString().toInt()
-//        val id5 = binding.tvCard3Right.text.toString().toInt()
-//        val id6 = binding.tvCard3NotRight.text.toString().toInt()
-//        val id7 = binding.tvCard4Right.text.toString().toInt()
-//        val id8 = binding.tvCard4NotRight.text.toString().toInt()
+        val id3 = binding.tvCard2Right.text.toString().toInt()
+        val id4 = binding.tvCard2NotRight.text.toString().toInt()
+        val id5 = binding.tvCard3Right.text.toString().toInt()
+        val id6 = binding.tvCard3NotRight.text.toString().toInt()
+        val id7 = binding.tvCard4Right.text.toString().toInt()
+        val id8 = binding.tvCard4NotRight.text.toString().toInt()
 
 
-        val items = DataModel( id1, id2)//, id3, id4, id5, id6, id7,  id8
+        val items = DataModel( id1, id2, id3, id4, id5, id6, id7,  id8)
         mViewModel.dataLiveData.value = items
 
     }
