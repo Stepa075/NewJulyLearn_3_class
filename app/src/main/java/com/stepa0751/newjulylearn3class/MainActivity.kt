@@ -78,16 +78,23 @@ class MainActivity : AppCompatActivity() {
             tvFalseAnswer3 = it.card3NotRightAnswers
             tvTrueAnswer4 = it.card4RightAnswers
             tvFalseAnswer4 = it.card4NotRightAnswers
+            val true1:String = it.card1RightAnswers.toString()
+            binding.tvCard1RightTv.text = "${getString(R.string.pravilno)} $true1"
+            val false1: String =  it.card1NotRightAnswers.toString()
+            binding.tvCard1NotRight.text = "${getString(R.string.nepravilno)} $false1"
+            val true2:String = it.card2RightAnswers.toString()
+            binding.tvCard2Right.text = "${getString(R.string.pravilno)} $true2"
+            val false2: String =  it.card2NotRightAnswers.toString()
+            binding.tvCard2NotRight.text = "${getString(R.string.nepravilno)} $false2"
+
+
 //            binding.tvCard2Right.text = it.card2RightAnswers.toString()
 //            binding.tvCard2NotRight.text = it.card2NotRightAnswers.toString()
 //            binding.tvCard3Right.text = it.card3RightAnswers.toString()
 //            binding.tvCard3NotRight.text = it.card3NotRightAnswers.toString()
 //            binding.tvCard4Right.text = it.card4RightAnswers.toString()
 //            binding.tvCard4NotRight.text = it.card4NotRightAnswers.toString()
-            val true1:String = it.card1RightAnswers.toString()
-            binding.tvCard1RightTv.text = "${getString(R.string.pravilno)} $true1"
-            val false1: String =  it.card1NotRightAnswers.toString()
-            binding.tvCard1NotRight.text = "${getString(R.string.nepravilno)} $false1"
+
         })
     }
 
