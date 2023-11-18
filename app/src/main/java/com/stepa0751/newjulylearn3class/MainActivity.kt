@@ -27,14 +27,14 @@ class MainActivity : AppCompatActivity() {
     var composePrimer2: String = ""
     var composePrimer3: String = ""
     var composePrimer4: String = ""
-    var tvTrueAnswer : Int = 0
-    var tvFalseAnswer : Int = 0
-    var tvTrueAnswer2 : Int = 0
-    var tvFalseAnswer2 : Int = 0
-    var tvTrueAnswer3 : Int = 0
-    var tvFalseAnswer3 : Int = 0
-    var tvTrueAnswer4 : Int = 0
-    var tvFalseAnswer4 : Int = 0
+    var tvTrueAnswer: Int = 0
+    var tvFalseAnswer: Int = 0
+    var tvTrueAnswer2: Int = 0
+    var tvFalseAnswer2: Int = 0
+    var tvTrueAnswer3: Int = 0
+    var tvFalseAnswer3: Int = 0
+    var tvTrueAnswer4: Int = 0
+    var tvFalseAnswer4: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,9 +49,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-
-
     override fun onStop() {
         super.onStop()
         Log.d("MyLog", "OnStop")
@@ -64,9 +61,8 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     @SuppressLint("SetTextI18n")
-    private fun setView()  {
+    private fun setView() {
         mViewModel.dataLiveData.observe(this, Observer {
 
 
@@ -78,23 +74,22 @@ class MainActivity : AppCompatActivity() {
             tvFalseAnswer3 = it.card3NotRightAnswers
             tvTrueAnswer4 = it.card4RightAnswers
             tvFalseAnswer4 = it.card4NotRightAnswers
-            val true1:String = it.card1RightAnswers.toString()
+            val true1: String = it.card1RightAnswers.toString()
             binding.tvCard1RightTv.text = "${getString(R.string.pravilno)} $true1"
-            val false1: String =  it.card1NotRightAnswers.toString()
+            val false1: String = it.card1NotRightAnswers.toString()
             binding.tvCard1NotRight.text = "${getString(R.string.nepravilno)} $false1"
-            val true2:String = it.card2RightAnswers.toString()
+            val true2: String = it.card2RightAnswers.toString()
             binding.tvCard2Right.text = "${getString(R.string.pravilno)} $true2"
-            val false2: String =  it.card2NotRightAnswers.toString()
+            val false2: String = it.card2NotRightAnswers.toString()
             binding.tvCard2NotRight.text = "${getString(R.string.nepravilno)} $false2"
-
-
-//            binding.tvCard2Right.text = it.card2RightAnswers.toString()
-//            binding.tvCard2NotRight.text = it.card2NotRightAnswers.toString()
-//            binding.tvCard3Right.text = it.card3RightAnswers.toString()
-//            binding.tvCard3NotRight.text = it.card3NotRightAnswers.toString()
-//            binding.tvCard4Right.text = it.card4RightAnswers.toString()
-//            binding.tvCard4NotRight.text = it.card4NotRightAnswers.toString()
-
+            val true3: String = it.card3RightAnswers.toString()
+            binding.tvCard3Right.text = "${getString(R.string.pravilno)} $true3"
+            val false3: String = it.card3NotRightAnswers.toString()
+            binding.tvCard3NotRight.text = "${getString(R.string.nepravilno)} $false3"
+            val true4: String = it.card4RightAnswers.toString()
+            binding.tvCard4Right.text = "${getString(R.string.pravilno)} $true4"
+            val false4: String = it.card4NotRightAnswers.toString()
+            binding.tvCard4NotRight.text = "${getString(R.string.nepravilno)} $false4"
         })
     }
 
@@ -135,12 +130,10 @@ class MainActivity : AppCompatActivity() {
         val id8 = binding.tvCard4NotRight.text.toString().toInt()
 
 
-        val items = DataModel( id1, id2, id3, id4, id5, id6, id7,  id8)
+        val items = DataModel(id1, id2, id3, id4, id5, id6, id7, id8)
         mViewModel.dataLiveData.value = items
 
     }
-
-
 
 
     @SuppressLint("SetTextI18n")
@@ -194,7 +187,7 @@ class MainActivity : AppCompatActivity() {
 //            blinkgGreen()
 //            binding.tvCard1RightTv += 1
                 tvTrueAnswer += 1
-                binding.tvCard1RightTv.text ="${getString(R.string.pravilno)} $tvTrueAnswer"
+                binding.tvCard1RightTv.text = "${getString(R.string.pravilno)} $tvTrueAnswer"
 //            bindingClass.tvTrue.text = "Правильно: $tr"
 
             } else {
@@ -210,7 +203,6 @@ class MainActivity : AppCompatActivity() {
             changePrimerPlusMinus()
         }
     }
-
 
 
 }
