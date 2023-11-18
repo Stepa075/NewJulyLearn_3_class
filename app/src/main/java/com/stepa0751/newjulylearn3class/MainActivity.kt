@@ -219,15 +219,15 @@ class MainActivity : AppCompatActivity() {
                 otvet = chislo1 / chislo2; znak1 = ":"
             }
             if (otvet > 0 && variant == 0) {
-                composePrimer2 = "$chislo1$znak1$chislo2=$otvet"
-                bindingClass.cv2tvPrimer.text = "$chislo1$znak1$chislo2"
-                bindingClass.cv2etOtvet.text.clear()
+                composePrimer3 = "$chislo1$znak1$chislo2=$otvet"
+                binding.tvCard3Example.text = "$chislo1$znak1$chislo2"
+                binding.etCard3Answer.text.clear()
                 break
             }
             if (otvet > 0 && chislo1 % chislo2 == 0) {
-                composePrimer2 = "$chislo1$znak1$chislo2=$otvet"
-                bindingClass.cv2tvPrimer.text = "$chislo1$znak1$chislo2"
-                bindingClass.cv2etOtvet.text.clear()
+                composePrimer3 = "$chislo1$znak1$chislo2=$otvet"
+                binding.tvCard3Example.text = "$chislo1$znak1$chislo2"
+                binding.etCard3Answer.text.clear()
                 break
 
             }
@@ -237,27 +237,24 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun trueOrFalse3() {
-        if (bindingClass.cv2etOtvet.text?.toString()?.trim()?.equals("")!!) {
+        if (binding.etCard3Answer.text?.toString()?.trim()?.equals("")!!) {
             Toast.makeText(this, "Введите число", Toast.LENGTH_LONG).show()
         } else {
-            val answer: String = bindingClass.cv2etOtvet.text.toString()
-            val trueAnswer = composePrimer2.substringAfter("=", "0")
+            val answer: String = binding.etCard3Answer.text.toString()
+            val trueAnswer = composePrimer3.substringAfter("=", "0")
             if (answer == trueAnswer) {
-                blinkgGreen()
-                tvTrueAnswer2 += 1
+                blink(1)
+                tvTrueAnswer3 += 1
                 val tr1 = tvTrueAnswer2
-                bindingClass.cv2tvTrue.text = "Правильно: $tr1"
+                binding.tvCard3Right.text = "Правильно: $tr1"
 
             } else {
-                blinkgRed()
-                tvFalseAnswer2 += 1
-                val fa1 = tvFalseAnswer2
-                bindingClass.cv2tvFalse.text = "Неправильно: $fa1"
+                blink(0)
+                tvFalseAnswer3 += 1
+                val fa1 = tvFalseAnswer3
+                binding.tvCard3NotRight.text = "Неправильно: $fa1"
                 Log.d("Mylog", "countAnswer: $fa1")
             }
-            Log.d("Mylog", "answer: $answer")
-            Log.d("Mylog", "trueAnswer: $trueAnswer")
-            howManyErrors()
             changePrimerMultiplyDivide3()
         }
     }
