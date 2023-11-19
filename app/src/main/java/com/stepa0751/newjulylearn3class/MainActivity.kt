@@ -290,14 +290,14 @@ class MainActivity : AppCompatActivity() {
                 blink(1)
                 tvTrueAnswer2 += 1
                 binding.tvCard2Right.text = ""
-                binding.tvCard2Right.text = "Правильно: $tvTrueAnswer"
+                binding.tvCard2Right.text = "Правильно: $tvTrueAnswer2"
 
 
             } else {
                 blink(0)
                 tvFalseAnswer2 += 1
                 binding.tvCard2NotRight.text = ""
-                binding.tvCard2NotRight.text = "Неправильно: $tvFalseAnswer"
+                binding.tvCard2NotRight.text = "Неправильно: $tvFalseAnswer2"
             }
             changePrimerOneX2()
         }
