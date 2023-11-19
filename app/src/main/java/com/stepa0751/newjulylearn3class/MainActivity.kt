@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -38,10 +39,41 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+//        setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         mViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+
+        binding.etCard1Answer.setOnEditorActionListener { v, actionId, event ->
+            return@setOnEditorActionListener when (actionId) {
+                EditorInfo.IME_ACTION_SEND -> {
+                    trueOrFalse1()
+                    true
+                }
+                else -> false
+            }
+        }
+
+//        binding.etCard2Answer.setOnEditorActionListener { v, actionId, event ->
+//            return@setOnEditorActionListener when (actionId) {
+//                EditorInfo.IME_ACTION_SEND -> {
+//                    trueOrFalse2()
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
+
+        binding.etCard3Answer.setOnEditorActionListener { v, actionId, event ->
+            return@setOnEditorActionListener when (actionId) {
+                EditorInfo.IME_ACTION_SEND -> {
+                    trueOrFalse3()
+                    true
+                }
+                else -> false
+            }
+        }
+
         setOnClicks()
         changePrimerPlusMinus1()
         changePrimerMultiplyDivide3()
