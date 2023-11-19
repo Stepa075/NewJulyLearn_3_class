@@ -11,6 +11,6 @@ data class DataModel(
     val card3RightAnswers: Int,
     val card3NotRightAnswers: Int,
 //
-//    val card4RightAnswers: Int,
-//    val card4NotRightAnswers: Int
+    val card4RightAnswers: Int,
+    val card4NotRightAnswers: Int
 )

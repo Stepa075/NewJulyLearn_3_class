@@ -59,7 +59,7 @@
                         android:layout_marginBottom="8dp"
                         android:paddingStart="3dp"
                         android:paddingEnd="3dp"
-                        android:text="@string/nepravilno"
+                        android:text="Неправильно: 0"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -71,7 +71,7 @@
                         android:layout_marginBottom="8dp"
                         android:paddingStart="3dp"
                         android:paddingEnd="3dp"
-                        android:text="@string/pravilno"
+                        android:text="Правильно: 0"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
