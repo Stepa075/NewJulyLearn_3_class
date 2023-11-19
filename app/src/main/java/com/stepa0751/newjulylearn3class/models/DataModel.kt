@@ -5,8 +5,8 @@ data class DataModel(
     val card1RightAnswers: Int,
     val card1NotRightAnswers: Int,
 
-//    val card2RightAnswers: Int,
-//    val card2NotRightAnswers: Int,
+    val card2RightAnswers: Int,
+    val card2NotRightAnswers: Int,
 //
     val card3RightAnswers: Int,
     val card3NotRightAnswers: Int,

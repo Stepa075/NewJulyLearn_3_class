@@ -24,8 +24,8 @@ class MainActivity : AppCompatActivity() {
 
 
     var composePrimer1: Int = 0
-    var composePrimer2: String = ""
-    var composePrimer3: String = ""
+    var composePrimer2: Int = 0
+    var composePrimer3: Int = 0
     var composePrimer4: String = ""
     var tvTrueAnswer: Int = 0
     var tvFalseAnswer: Int = 0
@@ -54,15 +54,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-//        binding.etCard2Answer.setOnEditorActionListener { v, actionId, event ->
-//            return@setOnEditorActionListener when (actionId) {
-//                EditorInfo.IME_ACTION_SEND -> {
-//                    trueOrFalse2()
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
+        binding.etCard2Answer.setOnEditorActionListener { v, actionId, event ->
+            return@setOnEditorActionListener when (actionId) {
+                EditorInfo.IME_ACTION_SEND -> {
+                    trueOrFalse2()
+                    true
+                }
+                else -> false
+            }
+        }
 
         binding.etCard3Answer.setOnEditorActionListener { v, actionId, event ->
             return@setOnEditorActionListener when (actionId) {
@@ -76,6 +76,7 @@ class MainActivity : AppCompatActivity() {
 
         setOnClicks()
         changePrimerPlusMinus1()
+        changePrimerOneX2()
         changePrimerMultiplyDivide3()
         changePrimerMultiplyDividePlusMinus4()
     }
@@ -98,8 +99,8 @@ class MainActivity : AppCompatActivity() {
         mViewModel.dataLiveData.observe(this, Observer {
             tvTrueAnswer = it.card1RightAnswers
             tvFalseAnswer = it.card1NotRightAnswers
-//            tvTrueAnswer2 = it.card2RightAnswers
-//            tvFalseAnswer2 = it.card2NotRightAnswers
+            tvTrueAnswer2 = it.card2RightAnswers
+            tvFalseAnswer2 = it.card2NotRightAnswers
             tvTrueAnswer3 = it.card3RightAnswers
             tvFalseAnswer3 = it.card3NotRightAnswers
             tvTrueAnswer4 = it.card4RightAnswers
@@ -108,10 +109,10 @@ class MainActivity : AppCompatActivity() {
             binding.tvCard1RightTv.text = "${getString(R.string.pravilno)} $true1"
             val false1: String = it.card1NotRightAnswers.toString()
             binding.tvCard1NotRight.text = "${getString(R.string.nepravilno)} $false1"
-//            val true2: String = it.card2RightAnswers.toString()
-//            binding.tvCard2Right.text = "${getString(R.string.pravilno)} $true2"
-//            val false2: String = it.card2NotRightAnswers.toString()
-//            binding.tvCard2NotRight.text = "${getString(R.string.nepravilno)} $false2"
+            val true2: String = it.card2RightAnswers.toString()
+            binding.tvCard2Right.text = "${getString(R.string.pravilno)} $true2"
+            val false2: String = it.card2NotRightAnswers.toString()
+            binding.tvCard2NotRight.text = "${getString(R.string.nepravilno)} $false2"
             val true3: String = it.card3RightAnswers.toString()
             binding.tvCard3Right.text = "${getString(R.string.pravilno)} $true3"
             val false3: String = it.card3NotRightAnswers.toString()
@@ -138,7 +139,7 @@ class MainActivity : AppCompatActivity() {
         return View.OnClickListener {
             when (it.id) {
                 R.id.bt_card1_ok -> trueOrFalse1()
-//                R.id.bt_card2_ok ->
+                R.id.bt_card2_ok -> trueOrFalse2()
                 R.id.bt_card3_ok -> trueOrFalse3()
                 R.id.im_card4_more -> trueOrFalse4("<")
                 R.id.im_card4_equals -> trueOrFalse4("=")
@@ -152,22 +153,22 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
         val id1 = tvTrueAnswer
         val id2 = tvFalseAnswer
-//        val id3 = binding.tvCard2Right.text.toString().toInt()
-//        val id4 = binding.tvCard2NotRight.text.toString().toInt()
+        val id3 = tvTrueAnswer2
+        val id4 = tvFalseAnswer2
         val id5 = tvTrueAnswer3
         val id6 = tvFalseAnswer3
         val id7 = tvTrueAnswer4
         val id8 = tvFalseAnswer4
 
 
-        val items = DataModel(id1, id2, id5, id6, id7, id8)//, id3, id4,
+        val items = DataModel(id1, id2, id3, id4, id5, id6, id7, id8)//,
         mViewModel.dataLiveData.value = items
         Log.d("MyLog", "onPause")
     }
 
 
     @SuppressLint("SetTextI18n")
-    fun changePrimerPlusMinus1() {
+    private fun changePrimerPlusMinus1() {
 
         while (true) {
 
@@ -195,7 +196,7 @@ class MainActivity : AppCompatActivity() {
 
                 composePrimer1 = otvet
 //              composePrimer = "$chislo1$znak1$chislo2$znak2$chislo3=$otvet"
-                binding.tvCard1Example.text = "$chislo1$znak1$chislo2$znak2$chislo3"
+                binding.tvCard1Example.text = "$chislo1 $znak1 $chislo2 $znak2 $chislo3"
                 binding.etCard1Answer.text.clear()
                 break
 
@@ -206,7 +207,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("SetTextI18n")
-    fun trueOrFalse1() {
+    private fun trueOrFalse1() {
 
         if (binding.etCard1Answer.text?.toString()?.trim()?.equals("")!!) {
             Toast.makeText(this, "Введите число", Toast.LENGTH_LONG).show()
@@ -233,6 +234,76 @@ class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("SetTextI18n")
+    private fun changePrimerOneX2(){
+        while (true) {
+
+            val random = Random()
+            val chislo1: Int = (1..20).random()//random.nextInt(100)
+            val chislo2: Int = (1..20).random()
+            var znak1 = ""
+            val variant: Int = random.nextInt(4)
+            val variantX: Int = random.nextInt(3)
+            var otvet = 0
+            if (variant == 0) {
+                otvet = chislo1 + chislo2 ; znak1 = "+"
+            }
+            if (variant == 1) {
+                otvet = chislo1 - chislo2 ; znak1 = "-"
+            }
+            if (variant == 2) {
+                otvet = chislo1 * chislo2 ; znak1 = "*"
+            }
+            if (variant == 3) {
+                if (chislo1 % chislo2 == 0) {
+                    otvet = chislo1 / chislo2 ; znak1 = ":";
+                }
+            }
+            if (otvet > 0) {
+
+
+                if (variantX == 0){
+                    binding.tvCard2Example.text = "X $znak1 $chislo2 = $otvet"
+                    composePrimer2 = chislo1
+                }
+                if (variantX == 1){
+                    binding.tvCard2Example.text = "$chislo1 $znak1 X = $otvet"
+                    composePrimer2 = chislo2
+                }
+                if (variantX == 2){
+                    binding.tvCard2Example.text = "$chislo1 $znak1 $chislo2 = X"
+                    composePrimer2 = otvet
+                }
+                binding.etCard2Answer.text.clear()
+                break
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun trueOrFalse2(){
+        if (binding.etCard2Answer.text?.toString()?.trim()?.equals("")!!) {
+            Toast.makeText(this, "Введите число", Toast.LENGTH_LONG).show()
+        } else {
+            val answer: String = binding.etCard2Answer.text?.toString()!!
+            val trueAnswer = composePrimer2
+            if (answer.toInt() == trueAnswer) {
+                blink(1)
+                tvTrueAnswer2 += 1
+                binding.tvCard2Right.text = ""
+                binding.tvCard2Right.text = "Правильно: $tvTrueAnswer"
+
+
+            } else {
+                blink(0)
+                tvFalseAnswer2 += 1
+                binding.tvCard2NotRight.text = ""
+                binding.tvCard2NotRight.text = "Неправильно: $tvFalseAnswer"
+            }
+            changePrimerOneX2()
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
     private fun changePrimerMultiplyDivide3() {
         while (true) {
 
@@ -250,14 +321,14 @@ class MainActivity : AppCompatActivity() {
                 otvet = chislo1 / chislo2; znak1 = ":"
             }
             if (otvet > 0 && variant == 0) {
-                composePrimer3 = "$chislo1$znak1$chislo2=$otvet"
-                binding.tvCard3Example.text = "$chislo1$znak1$chislo2"
+                composePrimer3 = otvet //"$chislo1$znak1$chislo2=$otvet"
+                binding.tvCard3Example.text = "$chislo1 $znak1 $chislo2 "
                 binding.etCard3Answer.text.clear()
                 break
             }
             if (otvet > 0 && chislo1 % chislo2 == 0) {
-                composePrimer3 = "$chislo1$znak1$chislo2=$otvet"
-                binding.tvCard3Example.text = "$chislo1$znak1$chislo2"
+                composePrimer3 = otvet //"$chislo1$znak1$chislo2=$otvet"
+                binding.tvCard3Example.text = "$chislo1 $znak1 $chislo2"
                 binding.etCard3Answer.text.clear()
                 break
 
@@ -272,8 +343,8 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Введите число", Toast.LENGTH_LONG).show()
         } else {
             val answer: String = binding.etCard3Answer.text.toString()
-            val trueAnswer = composePrimer3.substringAfter("=", "0")
-            if (answer == trueAnswer) {
+            val trueAnswer = composePrimer3  //.substringAfter("=", "0")
+            if (answer.toInt() == trueAnswer) {
                 blink(1)
                 tvTrueAnswer3 += 1
                 val tr1 = tvTrueAnswer3
@@ -338,7 +409,7 @@ class MainActivity : AppCompatActivity() {
                         otvet < otvet2 -> "<"
                         else -> "="
                     }
-                    binding.tvCard4Example.text = "$chislo1$znak1$chislo2 ? $chislo3$znak2$chislo4"
+                    binding.tvCard4Example.text = "$chislo1 $znak1 $chislo2 ? $chislo3 $znak2 $chislo4"
                     break
                 }
                 if((variant != 1)&&(variant2 == 1 && chislo3 % chislo4 == 0)){ // Если первый не деление а второй вариант деление...
@@ -347,7 +418,7 @@ class MainActivity : AppCompatActivity() {
                         otvet < otvet2 -> "<"
                         else -> "="
                     }
-                    binding.tvCard4Example.text = "$chislo1$znak1$chislo2 ? $chislo3$znak2$chislo4"
+                    binding.tvCard4Example.text = "$chislo1 $znak1 $chislo2 ? $chislo3 $znak2 $chislo4"
                     break
                 }
                 if (( variant == 1 && chislo1 % chislo2 == 0) &&  //  ЕСли оба варианта деление
@@ -358,7 +429,7 @@ class MainActivity : AppCompatActivity() {
                         otvet < otvet2 -> "<"
                         else -> "="
                     }
-                    binding.tvCard4Example.text = "$chislo1$znak1$chislo2 ? $chislo3$znak2$chislo4"
+                    binding.tvCard4Example.text = "$chislo1 $znak1 $chislo2 ? $chislo3 $znak2 $chislo4"
                     break
                 }
                 if(variant != 1 && variant2 != 1){
@@ -367,7 +438,7 @@ class MainActivity : AppCompatActivity() {
                         otvet < otvet2 -> "<"
                         else -> "="
                     }
-                    binding.tvCard4Example.text = "$chislo1$znak1$chislo2 ? $chislo3$znak2$chislo4"
+                    binding.tvCard4Example.text = "$chislo1 $znak1 $chislo2 ? $chislo3 $znak2 $chislo4"
                     break
                 }
             }
